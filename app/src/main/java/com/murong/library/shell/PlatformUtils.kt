@@ -13,7 +13,7 @@ class PlatformUtils {
     //获取CPU型号，如msm8996
     fun getCPUName(): String {
         if (cpu == null) {
-            cpu = PropsUtils.getProp("ro.build.device_family")
+            cpu = PropsUtils.getProp("ro.soc.model")
         }
 
         return cpu!!

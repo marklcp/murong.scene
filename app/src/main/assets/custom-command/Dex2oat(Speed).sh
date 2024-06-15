@@ -1,0 +1,1 @@
+am startservice -n com.murong.diaodu/.services.CompileService -a com.murong.diaodu.SpeedCompile

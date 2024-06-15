@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+		<group title="模块控制器">
+		    <action reload="true" auto-off="true">
+		        <title>模块</title>
+		        <desc>线程调度模块</desc>
+		        <param name="module" label="请确认是否安装模块" type="switch" />
+		        <param name="update" label="更新免重启使用（仅适合模块更新使用）" type="switch" />
+		        <set>
+		            if [ "$module" = "1" ]; then
+		            source $TOOLKIT/tool/install_module.sh
+		            else
+		                echo "      ✖ 未点击确认是否安装模块"
+		            fi
+		            if [ "$update" = "1" ]; then
+		            source $TOOLKIT/tool/install_module.sh
+		            fi
+		        </set>
+		        <summary sh="$TOOLKIT/tool/summary.sh" />
+		    </action>
+		    <action reload="false" auto-off="false">
+		        <title>查询设备处理器信息</title>
+		        <desc>查询设备频率与调度器</desc>
+		        <param name="cpu" label="查询设备CPU调度器" type="switch" />
+		        <set>
+		            if [ "$cpu" = "1" ]; then
+		            source $TOOLKIT/tool/cpu.sh
+		            else
+		                echo "      ✖ 未点击确认是否查询设备CPU调度器"
+		            fi
+		        </set>
+		    </action>
+		    <picker reload="true" auto-off="true">
+		        <title>备份与恢复配置</title>
+		        <desc>备份与恢复配置</desc>
+		        <options>
+		        <option value="backup">备份配置</option>
+				<option value="recover">恢复配置</option>
+				<option value="restore">还原默认配置</option>
+				</options>
+		        <set>
+		            source $TOOLKIT/tool/install_deploy.sh
+		        </set>
+		    </picker>
+		          <switch shell="hidden"
+			            title="应用采样率控制器"
+			            desc="">
+			            <get>${TOOLKIT}/tool/state.sh CKC</get>
+			            <set>
+			            if [ "$state" = "1" ];then
+			            sed -i 's/应用采样率控制器=0/应用采样率控制器=1/g' ${TOOLKIT}/tool/cache/mode.txt
+			            fi
+			            if [ "$state" = "0" ];then
+			            sed -i 's/应用采样率控制器=1/应用采样率控制器=0/g' ${TOOLKIT}/tool/cache/mode.txt
+			            fi
+			            </set>
+		          </switch>
+		</group>
+		
+		<group title="系统控制器">
+			            <action shell="hidden">
+			            <title>系统控制器</title>
+			            <desc>关闭官方调度</desc>
+			            <summary sh="$TOOLKIT/tool/tool.sh CKA" />
+			            <param name="Orms" label="禁用Orms进程" type="switch" value-sh="$TOOLKIT/tool/tool.sh GETA" />
+			            <param name="Gameopt" label="禁用Gameopt进程" type="switch" value-sh="$TOOLKIT/tool/tool.sh GETB" />
+			            <param name="Oiface" label="禁用Oiface" type="switch" value-sh="$TOOLKIT/tool/tool.sh GETC" />
+			            <param name="Rate" label="防止系统锁60帧" desc="如果开启此开关游戏还是锁60，请打开设置-其他设置-增强服务里面关闭游戏助手和应用增强的开关" type="switch" value-sh="$TOOLKIT/tool/tool.sh GETE" />
+			            <set>
+			            source $TOOLKIT/tool/tool.sh SETA
+			            </set>     
+			            </action>        
+		</group>
+		
+		<group title="采样率控制器">
+	<picker id="touch_mode" reload="false" auto-off="true">
+		        <title>全局采样率模式</title>
+		        <desc>设置全局采样率配置</desc>
+		        <options>
+		        <option value="touch240">全局240Hz采样率</option>
+				<option value="touch360">全局360Hz采样率</option>
+				<option value="touch480">全局480Hz采样率</option>
+				<option value="touch720">全局720Hz采样率</option>
+				<option value="disable">关闭全局采样率</option>
+				</options>
+				<get>$TOOLKIT/tool/touch_get.sh</get>
+		        <set>
+		            source $TOOLKIT/tool/touchapps.sh SETA
+		        </set>
+		        <summary sh="$TOOLKIT/tool/project.sh CKDA" />
+	</picker>
+		    
+		        <action shell="hidden">
+		            <title>动态采样率应用</title>
+		            <desc>配置动态采样率(应用)名单</desc>
+		            <param name="touch240" type="app" title="请选择你想要配置240采样率的应用" desc="点击确定后其它应用的配置可能会被清除，需要重新配置" multiple="multiple" options-sh="pm list packages -3 | cut -f2 -d ':'" value-sh="grep -Eo '[a-zA-Z0-9]+\.[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)* 240' ${TOOLKIT}/tool/cache/touchHidlTest.txt | awk '{print $1}'" />
+		            <param name="touch360" type="app" title="请选择你想要配置360采样率的应用" desc="点击确定后其它应用的配置可能会被清除，需要重新配置" multiple="multiple" options-sh="pm list packages -3 | cut -f2 -d ':'" value-sh="grep -Eo '[a-zA-Z0-9]+\.[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)* 360' ${TOOLKIT}/tool/cache/touchHidlTest.txt | awk '{print $1}'" />
+		            <param name="touch480" type="app" title="请选择你想要配置480采样率的应用" desc="点击确定后其它应用的配置可能会被清除，需要重新配置" multiple="multiple" options-sh="pm list packages -3 | cut -f2 -d ':'" value-sh="grep -Eo '[a-zA-Z0-9]+\.[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)* 480' ${TOOLKIT}/tool/cache/touchHidlTest.txt | awk '{print $1}'" />
+		            <param name="touch720" type="app" title="请选择你想要配置720采样率的应用" desc="点击确定后其它应用的配置可能会被清除，需要重新配置" multiple="multiple" options-sh="pm list packages -3 | cut -f2 -d ':'" value-sh="grep -Eo '[a-zA-Z0-9]+\.[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)* 720' ${TOOLKIT}/tool/cache/touchHidlTest.txt | awk '{print $1}'" />
+		            <param name="touch" label="删除全部规则" type="switch" value-sh="删除全部规则" />
+		            <set>
+		            source $TOOLKIT/tool/touchapps.sh SETB
+		            </set>
+				<summary sh="$TOOLKIT/tool/project.sh CKDB" />
+		        </action>       
+		</group>
+

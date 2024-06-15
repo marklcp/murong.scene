@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+    <group title="特别鸣谢">
+        <page link="https://github.com/helloklf/kr-scripts">
+            <title>酷安：嘟嘟斯基｜提供的〖kr-scripts〗</title>
+            <desc>本软件基于〖kr-scripts〗框架制作</desc>
+        </page>
+        
+        <page link="https://github.com/ManjusakaY">
+            <title>酷安：曼珠沙华Y ｜Manjusaka </title>
+            <desc>感谢挽秋大佬的日常指导和帮助</desc>
+        </page>
+
+        <page link="https://rootes.top/">
+            <title>酷安：可爱喵星人 ｜玩机百宝箱创始人 </title>
+            <desc>特别感谢可爱喵星人技术支持和帮助</desc>
+        </page>        
+    </group>
+</root>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resource dir="file:///android_asset/kr-script/icons" />
+
+    <group title="自愿赞助、觉得好用可以赞助一点您的支持就是我最大的动力">
+         <action
+            shell="hidden"
+            icon="kr-script/icons/Wxphone.png"
+            warning="点击确定会跳转到微信支付页面"
+            desc="如果觉得不错，可以打赏作者一包辣条"
+            title="打赏软件作者">
+            <set>source $TOOLKIT/tool/wxphone.sh</set>
+         </action>
+                
+        <action
+            shell="hidden"
+            icon="kr-script/icons/AlipayGphone.png"
+            warning="点击确定会跳转到支付宝转账页面"
+            desc="如果觉得不错，可以打赏作者一包辣条"
+            title="打赏软件作者">
+        <set>source $TOOLKIT/tool/alipaygphone.sh</set>
+        </action>
+    </group>

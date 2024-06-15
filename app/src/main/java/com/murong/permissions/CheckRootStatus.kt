@@ -66,7 +66,6 @@ public class CheckRootStatus(var context: Context, private val next: Runnable? =
                                     therad!!.interrupt()
                                     therad = null
                                 }
-                                exitProcess(0)
                             }
                             view.findViewById<View>(R.id.btn_skip).setOnClickListener {
                                 dismiss()

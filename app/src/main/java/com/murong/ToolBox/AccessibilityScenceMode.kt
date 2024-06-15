@@ -165,6 +165,19 @@ public class AccessibilityScenceMode : AccessibilityService(), IEventReceiver {
             modernModeEvent(null)
         } else if (eventType == EventType.SERVICE_UPDATE) {
             updateConfig()
+            // 定义要执行的命令
+    val commands = arrayOf(
+        "am stopservice -n com.murong.diaodu/com.murong.diaodu.AccessibilityScenceMode",
+        "settings put secure enabled_accessibility_services 0",
+        "settings put secure accessibility_enabled 0",
+        "am startservice -n com.murong.diaodu/com.murong.diaodu.AccessibilityScenceMode",
+        "settings put secure enabled_accessibility_services com.murong.diaodu/com.murong.diaodu.AccessibilityScenceMode",
+        "settings put secure accessibility_enabled 1"
+    )
+    // 尝试执行每条命令
+    for (command in commands) {
+        Runtime.getRuntime().exec(command)
+    }
             Scene.toast("辅助服务配置已更新~", Toast.LENGTH_SHORT)
         }
     }

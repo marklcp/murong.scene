@@ -23,7 +23,6 @@ class ActivityMagisk : ActivityBase() {
 
         setBackArrow()
 
-        onViewCreated()
     }
 
     override fun onResume() {

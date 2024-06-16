@@ -4,12 +4,12 @@
     <integer name="opacity">0</integer>
 
 
-    <string name="menu_11">Sun 主页</string>
-    <string name="menu_21">Sun 模块</string>
-    <string name="menu_31">Sun 应用</string>
-    <string name="menu_41">Sun 功能</string>
-    <string name="menu_51">Sun 工具</string>
-    <string name="menu_61">Sun 感谢</string>
+    <string name="menu_11">功能主页</string>
+    <string name="menu_21">线程放置</string>
+    <string name="menu_31">雪绒模块</string>
+    <string name="menu_41">自愿赞助</string>
+    <string name="menu_51">自愿赞助1</string>
+    <string name="menu_61">自愿赞助2</string>
     <string name="pio_starting">PIO·STARTING</string>
       <string name="pop_started">启动完成！</string>
     

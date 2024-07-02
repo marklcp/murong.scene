@@ -12,7 +12,7 @@ import java.io.File
 import java.nio.charset.Charset
 
 class CpuConfigInstaller {
-    val rootDir = "toolkit/powercfg/SOC"
+    val rootDir = "powercfg"
 
     private fun getPowerCfgDir(): String {
         return rootDir + "/" + PlatformUtils().getCPUName()
